@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>30 Days of Script: Inline Script</title>
+</head>
+<body>
+  <!-- Inline JS script -->
+  <button onclick="alert('Welcome to the course!')"></button> 
+  <!-- Script in body (place at end of body so it runs after all HTML elements are loaded and thus it can recognise and manipulate them) -->
+  <!-- <script>
+    console.log("This script is inside the body of the HTML file");
+  </script> -->
+  <!-- External script - links to another file -->
+  <!-- <script src="introduction.js"></script> -->
+  <!-- Multiple scripts can be linked to, and will run in this order -->
+  <!-- <script src="helloworld.js"></script> -->
+  <!-- The main.js file should be below all other scripts, very important -->
+  
+  <!-- Exercise 1 Script -->
+  <!-- <script src="ex1.js"></script> -->
+
+  <!-- Exercise 2 Script -->
+  <!-- <script type="module" src="main.js"></script> -->
+  <script src="./Conditional Exercises/Ex2/main.js">
+    // import { default as webTechs } from './ex2.js/webTechs';
+    // import { default as countries } from './ex2.js/countries';
+    // console.log(countries);
+  </script>
+</body>
+</html>
