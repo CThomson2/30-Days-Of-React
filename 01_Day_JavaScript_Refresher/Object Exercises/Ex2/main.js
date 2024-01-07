@@ -135,24 +135,43 @@ const products = [
   },
 ]
 
+////////////////////////////////
+
 function signUp(user_email) {
   // console.log(Object.values(users).map(user => user.email));
   if (Object.values(users).map(user => user.email).includes(user_email)) {
     console.log('You are already signed up! Log in here.');
     return;
   }
+  const new_username = prompt('Enter your username');
+  const new_password = prompt('Enter your password');
   users.push({
     _id: generateId(),
-    username: prompt('Enter your username'),
-    username: prompt('Enter your username'),
+    username: new_username,
+    email: `${new_username}@gmail.com`,
+    password: new_password,
+    // new Date() returns: "Sat Jan 06 2024 23:27:10 GMT+0000 (Greenwich Mean Time)"
+    createdAt: new Date().toLocaleString('en-US', {
+      // date formatting options
+      year: 'numeric',
+      month: '2-digit',
+      day: '2-digit',
+      hour: '2-digit',
+      minute: '2-digit',
+      hour12: true
+    }), // "01/06/2024, 11:29 PM"
+    isLoggedIn: true
   })
   console.log('Welcome to our platform!');
+  console.log(users[users.length - 1]);
 }
 
 function generateId() {
   let id = '';
   while (id.length < 6) {
-    id += String.fromCharCode(Math.floor(Math.random() * (90 - 48)) + 48);
+    id += Math.random() > 0.5
+      ? String.fromCharCode(Math.floor(Math.random() * 26) + 97)
+      : String.fromCharCode(Math.floor(Math.random() * 10) + 48)
   }
   return id;
 }
@@ -160,4 +179,10 @@ function generateId() {
 // user_email = prompt('Enter your email address:');
 // user_email = 'thomas@thomsas.com'; // existing user
 user_email = 'ryder@hotmail.com'; // new user
-signUp(user_email);
+// signUp(user_email);
+
+console.log('\n');
+
+console.log('Q4');
+
+// function 
