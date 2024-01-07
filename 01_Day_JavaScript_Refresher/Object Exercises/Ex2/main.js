@@ -108,7 +108,7 @@ const users = [
 const products = [
   {
     _id: 'eedfcf',
-    name: 'mobile phone',
+    name: 'Mobile Phone',
     description: 'Huawei Honor',
     price: 200,
     ratings: [
@@ -135,12 +135,14 @@ const products = [
   },
 ]
 
+//mdn setInterval;
 ////////////////////////////////
 
 function signUp(user_email) {
   // console.log(Object.values(users).map(user => user.email));
   if (Object.values(users).map(user => user.email).includes(user_email)) {
     console.log('You are already signed up! Log in here.');
+    setTimeout(signIn(user_email), 250);
     return;
   }
   const new_username = prompt('Enter your username');
@@ -162,10 +164,31 @@ function signUp(user_email) {
     }), // "01/06/2024, 11:29 PM"
     isLoggedIn: true
   })
-  console.log('Welcome to our platform!');
+  console.log(`Welcome to our platform!`);
   console.log(users[users.length - 1]);
 }
 
+function signIn(user_email) {
+  this_user = users.filter(u => u.email == user_email)[0];
+  console.log(this_user);
+  console.log("Password hint:", this_user.password);
+  // return this_user;
+  console.log(`Hello, ${this_user.username}! Enter your password to log in.`);
+  let i = 0;
+  do {
+    guessPassword = prompt('Password: ', )
+    if (guessPassword == this_user.password) {
+      console.log("Welcome! You are now logged in.");
+      return;
+    } else {
+      console.log("Incorrect password. Please try again.")
+      i++;
+    }
+  } while (i < 5);
+  console.log("You have entered too many incorrect password attempts. We have temporarily suspended your account, please contact customer services to log in.")
+}
+
+// Helper function
 function generateId() {
   let id = '';
   while (id.length < 6) {
@@ -176,13 +199,78 @@ function generateId() {
   return id;
 }
 
-// user_email = prompt('Enter your email address:');
 // user_email = 'thomas@thomsas.com'; // existing user
-user_email = 'ryder@hotmail.com'; // new user
+// user_email = 'ryder@hotmail.com'; // new user
+
+// user_email = prompt('Enter your email address:');
 // signUp(user_email);
 
 console.log('\n');
 
-console.log('Q4');
+console.log('Q4 - Write a function for a user to rate a product (later this will be a class method under the User class)');
+// Once we learn classes, this will become a method of the User class so that the user is registered as rating a given product
+function rateProduct(userId, productId, rating) {
+  const product = products.find(p => p._id == productId); // Array.find() returns the item, not a sub-array
+  console.log(`You are rating the ${product.name} ${rating} out of 5.`)
+  for (let r of product.ratings) {
+    if (r.userId == userId) {
+      r.rate = rating;
+      return;
+    }
+    product.ratings.push({
+      userId: userId,
+      rate: rating
+    })
+  }
+}
 
-// function 
+rateProduct('eefamr', 'aegfal', 3.5);
+rateProduct('fg12cy', 'hedfcg', 1.0);
+console.log(products);
+console.log('\n');
+
+console.log('Q5 - Write a function to find the average rating for a product');
+
+function averageRating(productId) {
+  const product = products.find( p => p._id == productId )
+  const productRatings = product.ratings
+  let meanScore;
+  switch (productRatings.length) {
+    case 0:
+      return;
+    case 1:
+      meanScore = productRatings[0].rate;
+      break;
+    default:
+      meanScore = productRatings.reduce( (acc, c) => acc.rate + c.rate) / productRatings.length;
+  }
+  /* 
+  Ternary operator could also be used...
+  meanScore = productRatings.length > 1
+    ? productRatings.reduce( (acc, c) => acc.rate + c.rate) / productRatings.length
+    : productRatings.length
+      ? productRatings[0].rate
+      : This product has no ratings yet!"
+  */
+  console.log(`The ${product.name} has an averaging rating of ${meanScore}`);
+}
+
+for (p of products) {
+  averageRating(p._id);
+}
+console.log('\n');
+
+console.log('Q6 - Write a function to like or remove a like from a product');
+function likeProduct(userId, productId) {
+  const product = products.find(p => p._id == productId);
+  // console.log(product.likes, pIndex);
+  if (product.likes.includes(userId)) {
+    let i = product.likes.indexOf(userId);
+    product.likes = product.likes.slice(0, i).concat(product.likes.slice(i + 1,));
+    console.log("You removed your like on " + product.name);
+  } else {
+    product.likes.push(userId);
+    console.log("You liked " + product.name);
+  }
+  console.log(product.likes);
+}
