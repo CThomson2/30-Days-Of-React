@@ -1556,11 +1556,19 @@ Now, you have a very good understanding of how to create JSX elements and also h
 
 1. What is React?
 2. What is a library?
-3. What is a single page application?
-4. What is a component ?
-5. What is the latest version of React?
-6. What is DOM?
-7. What is React Virtual DOM?
+3. What is a single page application?\
+_A single page application (SPA), built by React, provides unlimited freedom to create numerous views on the website, without the need for routing to different URL schemes and loading new pages. Instead of a link to the 'About' page, for instance, React allows the user to select the same button to navigate to 'About', but instead of refreshing the browser after navigating to a new URL, it will replace the appropriate DOM elements to render a whole new view, all on the same page. This speeds up the user experience drastically and is much more responsive._
+
+4. What is a component ?\
+_A React component is akin to an HTML element - the core, fundamental building blocks of the page, which together make up the DOM. Unlike HTML, which restricts us to its prebuilt, default elements, in React components are custom built to the developer's requirements, and can be highly comple with JS/TS functionality. Often, default HTML elements like the text input field are modified and improved in React, then rendered instead, while retaining the base functionality of the input element.
+React components always begin with a capital letter, and generally occupy their own, individual file, within a folder under the parent `components/` directory which describes the category of component it is._
+
+5. What is the latest version of React?\
+_Check react@latest in the terminal, or visit the official React website._
+6. What is DOM?\
+_Document Object Model, the environment which HTML elements occupy to create a web page on a browser._
+7. What is React Virtual DOM?\
+_A responsive and dynamic DOM, which allows for real-time dynamic modification of individual components based on user inputs without the re-rendering of the entire page, as would be the case with vanilla JS apps._
 8. What does a web application or a website(composed of) have?
 
 #### Exercises: Why React?
@@ -1571,17 +1579,28 @@ Now, you have a very good understanding of how to create JSX elements and also h
 
 #### Exercises: JSX
 
-1. What is an HTML element?
-2. How to write a self closing HTML element?
-3. What is an HTML attribute? Write some of them
-4. What is JSX?
+1. What is an HTML element?\
+_Example: `<h1>My Super Title</h1>` is a default HTML element. The `h1` between the tags defines the element type, and any text within is the 'Text Node', which in the DOM is a child node of the element itself, and is always the final descendent of any 'branch' in the DOM tree, as text cannot have child nodes._
+
+2. How to write a self closing HTML element?\
+_Some elements are self closing. These do not contain text within, as an inherent feature of their use and purpose. For instance, the `<link>` element present within the `<head>` portion of of any HTML document is self-closing, as it only contains inner attributes reffering to the content it links to, such as external styling libraries or type faces. It is written as `<link rel="stylesheet" other_attributes="...">`. Within the body, other examples are `<hr>` and `<input>`._
+3. What is an HTML attribute? Write some of them.\
+_attributes define characteristics of elements. They go within the first tag, not within the text content. E.g. `<button class="form-btn" type="submit" style="...">Click Me</button>`._
+4. What is JSX?\
+_JSX is HTML written in JS. This is how React components create elements in the HTML language combined with the functionality of JS. It's not HTML, but it looks very similar. Key differences are the attribute `className` instead of `class`, as `class` is a reserved JS keyword; also, JS can be embedded anywhere within JSX using curly braces: {}._
 5. What is babel?
 6. What is a transpiler?
 
 #### Exercises: JSX Elements
 
 1. What is a JSX element?
-2. Write your name in a JSX element and store it in a name variable
+<!-- <MyElement>
+  <h1>Log in</h1>
+  <input type="text" placeholder="username">
+  <input type="password">
+  { correctId(username) && <button>Log In</button> }
+</MyElement> -->
+2. Write your name in a JSX element and store it in a name variable\
 3. Write a JSX element which displays your full name, country, title, gender, email, phone number. Use h1 for the name and p for the rest of the information and store it in a user variable
 4. Write a footer JSX element
 
